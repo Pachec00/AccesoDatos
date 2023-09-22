@@ -15,7 +15,7 @@ import modelo.Actor;
 public class ActoresServices {
 
 	
-	public List<Actor> consultarActores() throws SQLException{
+	public List<Actor> consultarActores() throws SQLException, ActoresServiceException{
 		List<Actor> actores = new ArrayList<>();
 		Connection conn = null;
 		Statement stmt = null;
@@ -38,13 +38,18 @@ public class ActoresServices {
 				actor.setApellido(apellido);
 				actores.add(actor);
 			}
-		} finally {
-			if (stmt != null) {
+			
+		}catch (SQLException e) {
+			System.err.println("Error en la base de datos");
+			throw new ActoresServiceException("Error al obtener los actores de la base de datos");
+		}
+		finally {
+			try {
 				stmt.close();
-			}
-			if (conn != null) {
+			} catch (Exception e2) {}
+			try {
 				conn.close();
-			}
+			} catch (Exception e2) {}
 		}
 
 		return actores;
