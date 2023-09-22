@@ -29,11 +29,14 @@ public class ActoresServices {
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
+				Integer id = rs.getInt("actor_id");
 				String nombre = rs.getString("first_name");
 				String apellido = rs.getString("last_name");
 				Actor actor = new Actor();
+				actor.setId(id);
 				actor.setNombre(nombre);
 				actor.setApellido(apellido);
+				actores.add(actor);
 			}
 		} finally {
 			if (stmt != null) {
