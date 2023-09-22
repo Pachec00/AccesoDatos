@@ -17,8 +17,8 @@ public Connection getConnection() throws SQLException {
 			Class.forName(claseDriver);
 			return DriverManager.getConnection(urlConexion,usuario,contraseña);
 		
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
+		}catch(ClassNotFoundException e) {
+			System.out.println("No se encuentra la clase del driver");
 			
 			throw new SQLException("No se ha encontrado la clase driver",e);
 		}
