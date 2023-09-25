@@ -24,7 +24,8 @@ public class ActoresServices {
 			OpenConnection proveedor = new OpenConnection();
 			conn = proveedor.getConnection();
 			stmt = conn.createStatement();
-
+			
+			
 			String sql = "SELECT * FROM ACTOR";
 			rs = stmt.executeQuery(sql);
 

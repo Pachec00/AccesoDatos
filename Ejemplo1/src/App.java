@@ -7,20 +7,14 @@ import servicios.ActoresServices;
 
 public class App {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		ActoresServices service = new ActoresServices();
 		List<Actor> actores;
-
 		try {
-			try {
-				actores = service.consultarActores();
-				for (Actor actor : actores) {
-					System.out.println(actores);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+			actores = service.consultarActores();
+			for (Actor actor : actores) {
+				System.out.println(actor);
 			}
-
 		} catch (ActoresServiceException e) {
 			e.printStackTrace();
 		}

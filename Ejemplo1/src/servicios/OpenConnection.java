@@ -10,8 +10,8 @@ public Connection getConnection() throws SQLException {
 		
 		String urlConexion = "jdbc:mariadb://localhost:3306/sakila";
 		String claseDriver ="org.mariadb.jdbc.Driver";
-		String usuario = "sakila";
-		String contraseña = "sakila";
+		String usuario = "root";
+		String contraseña = "root";
 		
 		try {
 			Class.forName(claseDriver);
