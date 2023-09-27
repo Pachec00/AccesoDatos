@@ -2,6 +2,7 @@ package Ejercicio1.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 import Ejercicio1.dao.PeliculasDao;
@@ -15,26 +16,33 @@ public class PeliculasServices {
 		openConnection = new OpenConnection();
 
 	}
-	
-	
-	public List<Pelicula> consultarPeliculas() throws PeliculasServiceException{
+
+	public List<Pelicula> consultarPeliculas() throws PeliculasServiceException {
+
 		Connection conn = null;
 		try {
 			conn = openConnection.getConnection();
 			PeliculasDao dao = new PeliculasDao();
-			return dao.consultarPeliculas(conn);
-		}
-		catch(SQLException e) {
+			List<Pelicula> peliculas = dao.consultarPeliculas(conn);
+
+			for (Iterator iterator = peliculas.iterator(); iterator.hasNext();) {
+				Pelicula pelicula = (Pelicula) iterator.next();
+				if (pelicula.getLongitud() >= 100) {
+					iterator.remove();
+				}
+
+			}
+			return peliculas;
+		} catch (SQLException e) {
 			System.err.println("Ha habido un error en la base de datos: " + e.getMessage());
 			throw new PeliculasServiceException("Error al obtener actores de la bbdd", e);
-			
-		}
-		finally {
+
+		} finally {
 			try {
 				conn.close();
-			}catch(Exception e) {}
+			} catch (Exception e) {
+			}
 		}
-	
-	
+
 	}
 }
