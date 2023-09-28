@@ -6,7 +6,6 @@ import java.sql.SQLException;
 public class Conex {
 
 public Conex getConnection1() throws SQLException {
-		
 		String urlConexion = "jdbc:mariadb://localhost:3306/sakila";
 		String claseDriver ="org.mariadb.jdbc.Driver";
 		String usuario = "root";
@@ -17,9 +16,9 @@ public Conex getConnection1() throws SQLException {
 			return (Conex) DriverManager.getConnection(urlConexion,usuario,contraseña);
 		
 		}catch(ClassNotFoundException e) {
-			System.out.println("No se encuentra la clase del driver");
+			System.out.println("No se encuentra el driver");
 			
-			throw new SQLException("No se ha encontrado la clase driver",e);
+			throw new SQLException("No se encuentra el driver",e);
 		}
 	}
 }
