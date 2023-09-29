@@ -12,7 +12,7 @@ import Ejercicio3.modelo.Pagos;
 
 public class PagosDao {
 
-	public List<Pagos> consultarPagos(Connection conn, Integer id) throws SQLException {
+	public List<Pagos> consultarPagosDao(Connection conn, Integer id) throws SQLException {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -28,6 +28,7 @@ public class PagosDao {
 				p.setAmount(rs.getBigDecimal("amount"));
 				Date date = (rs.getDate("payment_date"));
 				p.setFecha(date.toLocalDate());
+				p.setCliente_id(id);
 				pagos.add(p);
 			}
 

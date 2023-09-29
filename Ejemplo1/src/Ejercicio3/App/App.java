@@ -7,16 +7,17 @@ import java.util.Map;
 
 import Ejercicio1.service.PeliculasServiceException;
 import Ejercicio2.modelo.Cliente;
+import Ejercicio3.modelo.Pagos;
 import Ejercicio3.service.PagosService;
 
 public class App {
 
 	public static void main(String[] args) {
 		PagosService service = new PagosService();
-		Map<String, List> c = new HashMap<>();
+		Map<String, List<Pagos>> c = new HashMap<>();
 		List cliente = new ArrayList<>();
 		try {
-			c = service.consultarPagos(80);
+			c = service.consultarPagos();
 		} catch (PeliculasServiceException e) {
 			e.printStackTrace();
 		}

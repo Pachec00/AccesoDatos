@@ -22,7 +22,7 @@ public class PagosService {
 		openConnection = new OpenConnection();
 	}
 
-	public Map<String, List> consultarPagos(Integer id) throws PeliculasServiceException {
+	public Map<String, List<Pagos>> consultarPagos() throws PeliculasServiceException {
 
 		Connection conn = null;
 		try {
@@ -30,11 +30,12 @@ public class PagosService {
 			ClienteDao dao = new ClienteDao();
 			PagosDao d = new PagosDao();
 			List<Cliente> listaCliente = dao.consultarClientes(conn);
-			List<Pagos> listaPagos = d.consultarPagos(conn, id);
-			Map<String, List> mapa = new HashMap<>();
+			List<Pagos> listaPagos;
+			Map<String, List<Pagos>> mapa = new HashMap<>();
 
 			for (Iterator iterator = listaCliente.iterator(); iterator.hasNext();) {
 				Cliente cliente = (Cliente) iterator.next();
+				listaPagos = d.consultarPagosDao(conn, cliente.getId());
 				mapa.put(cliente.getEmail(), listaPagos);
 
 			}
