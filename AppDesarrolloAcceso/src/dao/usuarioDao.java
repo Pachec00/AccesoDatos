@@ -9,21 +9,26 @@ import modelo.Usuarios;
 
 public class usuarioDao {
 
-	public Usuarios consultarUsuarioDao(Connection conn, String email, String pass) throws SQLException {
+	public Usuarios consultarUsuarioDao(Connection conn, String email) throws SQLException {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			Usuarios u = new Usuarios();
-			String sql = "select email, password from usuarios where ? = email and ? = password";
+			String sql = "select * from usuarios where  email = ?";
 
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, email);
-			stmt.setString(2, pass);
 			rs = stmt.executeQuery();
 
-			while (rs.next()) {
+			if (rs.next()) {
 				u.setEmail(rs.getString("email"));
 				u.setPass(rs.getString("password"));
+				u.setNombre(rs.getString("nombre"));
+				u.setApellidos(rs.getString("apellidos"));
+				u.setCiclo(rs.getString("ciclo"));
+				u.setActivo(rs.getInt("activo"));
+			}else {
+				return null;
 			}
 
 			return u;
@@ -43,17 +48,16 @@ public class usuarioDao {
 		
 		try {
 			
-			String sql = "insert into usuarios values(?,?,?,?,?,?,?)";
+			String sql = "insert into usuarios (email,password,nombre,apellidos,ciclo,activo) values(?,?,?,?,?,?)";
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, user.getIdUsuario());
-			stmt.setString(2, user.getEmail());
-			stmt.setString(3, user.getPass());
-			stmt.setString(4, user.getNombre());
-			stmt.setString(5, user.getApellidos());
-			stmt.setString(6, user.getCiclo());
+			stmt.setString(1, user.getEmail());
+			stmt.setString(2, user.getPass());
+			stmt.setString(3, user.getNombre());
+			stmt.setString(4, user.getApellidos());
+			stmt.setString(5, user.getCiclo());
 			user.setActivo(0);
-			stmt.setInt(7, user.getActivo());
-			
+			stmt.setInt(6, user.getActivo());
+			stmt.execute();
 			
 		} finally {
 			try {
