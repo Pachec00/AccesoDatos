@@ -1,27 +1,33 @@
 package app;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import dao.usuarioDao;
-import modelo.Usuarios;
-import services.usuarioService;
+import modelo.Registros;
+import services.registroService;
 import services.usuarioServiceException;
 
 public class test {
 
 	public static void main(String[] args) throws SQLException, usuarioServiceException {
 		
-		Usuarios user = new Usuarios();
+		Registros r = new Registros();
+//		r.setId_usuario(3);
+//		r.setDescripcion("Registro 1");
+//		LocalDate l = LocalDate.now();
+//		Date date = Date.valueOf(l);
+//		r.setFecha(date);
+//		r.setNum_horas(1);
+//		r.setId_registro(1);
 		
-		user.setNombre("a");
-		user.setApellidos("Rodriguez Yesares");
-		user.setEmail("F@");
-		user.setPass("123");
-		user.setCiclo("DAM");
+		registroService rs = new registroService();
+		List<Registros> lista = new ArrayList<>();
+		lista = rs.consultarRegistroService(3);
 		
-		usuarioService us = new usuarioService();
-		us.servicioLogin(user.getEmail(), user.getPass());
-		//us.registrarUsuario(user);
+		System.out.println(lista);
 	}
 
 }
