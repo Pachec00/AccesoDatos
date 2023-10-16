@@ -48,7 +48,8 @@ public class registroDao {
 		}
 	}
 
-	public void insertarRegistroDao(Connection conn, Registros r, LocalDate fecha) throws SQLException, usuarioServiceException {
+	public void insertarRegistroDao(Connection conn, Registros r, LocalDate fecha)
+			throws SQLException, usuarioServiceException {
 		PreparedStatement stmt = null;
 
 		try {

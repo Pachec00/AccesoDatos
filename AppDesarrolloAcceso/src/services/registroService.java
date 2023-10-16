@@ -36,26 +36,25 @@ public class registroService {
 			}
 		}
 	}
-	
-	
+
 	public void insertarRegistroService(Registros r) throws SQLException, usuarioServiceException {
 		Connection conn = null;
-		
+
 		try {
-			
+
 			conn = openConnection.getConnection();
-			
+
 			registroDao rd = new registroDao();
-			
+
 			Date date = r.getFecha();
 			LocalDate fecha = date.toLocalDate();
 			rd.insertarRegistroDao(conn, r, fecha);
-			
+
 		} finally {
 			try {
 				conn.close();
 			} catch (Exception e) {
-				
+
 			}
 		}
 	}

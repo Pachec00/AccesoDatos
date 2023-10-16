@@ -27,7 +27,7 @@ public class usuarioDao {
 				u.setApellidos(rs.getString("apellidos"));
 				u.setCiclo(rs.getString("ciclo"));
 				u.setActivo(rs.getInt("activo"));
-			}else {
+			} else {
 				return null;
 			}
 
@@ -42,12 +42,12 @@ public class usuarioDao {
 		}
 
 	}
-	
-	public void insertarUsuariosDao(Connection conn,Usuarios user) throws SQLException {
+
+	public void insertarUsuariosDao(Connection conn, Usuarios user) throws SQLException {
 		PreparedStatement stmt = null;
-		
+
 		try {
-			
+
 			String sql = "insert into usuarios (email,password,nombre,apellidos,ciclo,activo) values(?,?,?,?,?,?)";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, user.getEmail());
@@ -58,12 +58,12 @@ public class usuarioDao {
 			user.setActivo(0);
 			stmt.setInt(6, user.getActivo());
 			stmt.execute();
-			
+
 		} finally {
 			try {
 				stmt.close();
 			} catch (Exception e) {
-				
+
 			}
 		}
 	}
