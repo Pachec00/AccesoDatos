@@ -16,14 +16,29 @@ public class CityServicesImp implements CityService {
 
 	@Override
 	public List<City> getCities(String filtroDescripcion) throws NotFoundException, ServerErrorException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public City getCity(Long id) throws NotFoundException, ServerErrorException {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = nul;
+		CityDao cd = new CityDao();
+		List<City> city = new Arraylist<>();
+
+		try{
+			conn = openConnection.getConnection();
+
+			city.add(cd.getCityDao(conn, id));
+		} catch (Exception e) {
+			throw new ServerErrorException(e);
+		}finally{
+			try {
+				conn.close();
+			} catch (Exception e) {
+				
+			}
+		}
+		return city;
 	}
 
 	@Override
@@ -71,13 +86,13 @@ public class CityServicesImp implements CityService {
 
 	@Override
 	public City updateSelectiveCity(City city) throws NotFoundException, ServerErrorException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void deleteCity(Long id) throws NotFoundException, ServerErrorException {
-		// TODO Auto-generated method stub
+	
 
 	}
 

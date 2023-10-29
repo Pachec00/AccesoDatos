@@ -1,18 +1,51 @@
-package dao;
+ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.checkerframework.checker.units.qual.s;
 
 import modelo.City;
+import service.NotFoundException;
 
 public class CityDao {
 
 	//getCities
 	
 	//getCity
+
+	public City getCityDao(Connection conn, Long id) {
+		/*
+		 * TODO mirar si el nombre de las tablas estan bien en el rs.next()
+		*/
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		City city = new City();
+		try {
+			String sql = "select * from city where ? = id";
+
+			stmt = conn.prepareStatement(sql);
+			stmt.setLong(1, id);
+			rs = stmt.executeQuery();
+
+			while(rs.next()){
+				
+				city.setCountryId(rs.getLong("country_id"));
+				city.setDescripcion(rs.getString("city"));
+				city.setId(rs.getLong("city_id"));
+			}
+
+			return city;
+		} finally {
+			try {
+				stmt.close();
+			} catch (Exception e) {
+				throw new NotFoundException(e);
+			}
+		}
+	}
 	
 	//createCity
 	
@@ -29,10 +62,12 @@ public class CityDao {
 			try {
 				stmt.close();
 			} catch (Exception e) {
-				
+				throw new NotFoundException("Error al crear la ciudad en la base de datos",e);
 			}
 		}
 	}
+
+	
 	
 	//updateCity
 	
@@ -50,7 +85,7 @@ public class CityDao {
 			try {
 				stmt.close();
 			} catch (Exception e) {
-				
+				throw new NotFoundException("Error al actualizar",e);
 			}
 		}
 		
@@ -58,7 +93,10 @@ public class CityDao {
 	
 	//updateSelectiveCity
 	
-	public void updateSelectiveCityDao(Connection conn, City city) throws SQLException {
+	public void updateSelectiveCityDao(Connection conn, City city) throws SQLException { 
+		/*
+		 * Los atributos en null no se actualizan
+		 */
 		PreparedStatement stmt = null;
 		
 		try {
@@ -66,7 +104,6 @@ public class CityDao {
 	
 			//Ninguno null
 			String sql = "update city set city=?, country_id=? where city_id=?";
-			
 			//Country_id null
 			String sql1 = "update city set city=? where city_id=?";
 			//city null
@@ -90,10 +127,31 @@ public class CityDao {
 			try {
 				stmt.close();
 			} catch (Exception e2) {
-				
+				throw new NotFoundException("Error al actualizar",e);
 			}
 		}
 	}
 	
 	//deleteCity
+
+	public void deleteCityDao(Connection conn, Long id) {
+		PreparedStatement stmt = null;
+
+		try {
+			
+			String sql = "delete from city where id = ?";
+
+			stmt = conn.prepareStatement(sql);
+			stmt.setLong(id, 1);
+			stmt.execute();
+
+		} finally{
+			try {
+				stmt.close();
+			} catch (Exception e) {
+				 /*Lanzar error */
+				 throw new NotFoundException("No se encuentra la id ", e);
+			}
+		}
+	}
 }
