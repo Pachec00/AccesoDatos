@@ -1,6 +1,7 @@
 package service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.CityDao;
@@ -21,9 +22,9 @@ public class CityServicesImp implements CityService {
 
 	@Override
 	public City getCity(Long id) throws NotFoundException, ServerErrorException {
-		Connection conn = nul;
+		Connection conn = null;
 		CityDao cd = new CityDao();
-		List<City> city = new Arraylist<>();
+		List<City> city = new ArrayList<City>();
 
 		try{
 			conn = openConnection.getConnection();
