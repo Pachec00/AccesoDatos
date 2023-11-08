@@ -22,4 +22,10 @@ public class clientRest {
 		Deporte d = restTemplate.getForObject(url, Deporte.class, id);
 		return d;
 	}
+	
+	public Deporte crearDeporte(Deporte deporte) {
+		String url = urlBase + "/deporte";
+		Deporte d = restTemplate.postForObject(url, deporte, Deporte.class);
+		return d;
+	}
 }

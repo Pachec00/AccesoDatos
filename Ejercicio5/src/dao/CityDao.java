@@ -16,7 +16,7 @@ public class CityDao {
 	
 	//getCity
 
-	public City getCityDao(Connection conn, Long id) {
+	public City getCityDao(Connection conn, Long id) throws SQLException, NotFoundException {
 		/*
 		 * TODO mirar si el nombre de las tablas estan bien en el rs.next()
 		*/
@@ -49,7 +49,7 @@ public class CityDao {
 	
 	//createCity
 	
-	public void createCityDao(Connection conn, City city) throws SQLException {
+	public void createCityDao(Connection conn, City city) throws SQLException, NotFoundException {
 		PreparedStatement stmt = null;
 		
 		try {
@@ -71,7 +71,7 @@ public class CityDao {
 	
 	//updateCity
 	
-	public void updateCityDao(Connection conn, City city) throws SQLException {
+	public void updateCityDao(Connection conn, City city) throws SQLException, NotFoundException {
 		PreparedStatement stmt = null;
 		
 		try {
@@ -93,7 +93,7 @@ public class CityDao {
 	
 	//updateSelectiveCity
 	
-	public void updateSelectiveCityDao(Connection conn, City city) throws SQLException { 
+	public void updateSelectiveCityDao(Connection conn, City city) throws SQLException, NotFoundException { 
 		/*
 		 * Los atributos en null no se actualizan
 		 */
@@ -126,7 +126,7 @@ public class CityDao {
 		}finally {
 			try {
 				stmt.close();
-			} catch (Exception e2) {
+			} catch (Exception e) {
 				throw new NotFoundException("Error al actualizar",e);
 			}
 		}
@@ -134,15 +134,15 @@ public class CityDao {
 	
 	//deleteCity
 
-	public void deleteCityDao(Connection conn, Long id) {
+	public void deleteCityDao(Connection conn, Long id) throws SQLException, NotFoundException {
 		PreparedStatement stmt = null;
 
 		try {
 			
-			String sql = "delete from city where id = ?";
+			String sql = "delete from city where city_id = ?";
 
 			stmt = conn.prepareStatement(sql);
-			stmt.setLong(id, 1);
+			stmt.setLong(1, id);
 			stmt.execute();
 
 		} finally{
