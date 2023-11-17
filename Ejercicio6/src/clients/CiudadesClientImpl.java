@@ -25,7 +25,7 @@ public class CiudadesClientImpl implements CiudadesClient {
 	@Override
 	public List<Ciudad> getCities(String filtroDescripcion) throws CiudadNoEncontradaException, CiudadErrorException {
 		String url = urlBase + "/city?filtroDescripcion=" + filtroDescripcion;
-		Ciudad[] c = restTemplate.getForObject(url, Ciudad[].class, filtroDescripcion);
+		Ciudad[] c = restTemplate.getForObject(url, Ciudad[].class);
 		List<Ciudad> ciudades = new ArrayList<>();
 		return Arrays.asList(c);
 	}
