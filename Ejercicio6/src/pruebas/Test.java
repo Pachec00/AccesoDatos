@@ -9,7 +9,7 @@ import modelo.Ciudad;
 public class Test {
 
 	public static void main(String[] args) {
-		String url = "http://10.50.22.37:8080/";
+		String url = "http://localhost:8080/";
 		CiudadesClient client = new CiudadesClientImpl(url, 3000);
 		Ciudad ciudad = new Ciudad();
 		ciudad.setDescripcion("Samarcanda");

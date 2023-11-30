@@ -1,8 +1,8 @@
-package service;
+package Proyecto.service;
 
 import java.util.List;
 
-import modelo.City;
+import Proyecto.modelo.City;
 
 public interface CityService { // TODO: INCLUIR EXCEPCION SERVEREXCEPTION PARA CUALQUIER OTRO ERROR CON UN 500
 
