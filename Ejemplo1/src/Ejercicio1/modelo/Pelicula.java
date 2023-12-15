@@ -30,6 +30,10 @@ public class Pelicula {
 		return "Pelicula [id=" + id + ", titulo=" + titulo + ", longitud=" + longitud + "]";
 	}
 	
+	public String toCsv() {
+		return id+ "	"+ titulo + "	"+longitud+"	";
+	}
+	
 	
 	
 	

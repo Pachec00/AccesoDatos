@@ -39,7 +39,7 @@ public class CityServicesImp implements CityService {
 				
 			}
 		}
-		return city;
+		return (City) city;
 	}
 
 	@Override

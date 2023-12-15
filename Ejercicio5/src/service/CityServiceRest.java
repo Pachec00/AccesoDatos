@@ -10,7 +10,7 @@ import org.springframework.web.client.HttpStatusCodeException;
 @RestController
 public class CityServiceRest{
 
-    @GetMapping("/city")
+   
     
 
 }
