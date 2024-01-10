@@ -1,4 +1,4 @@
-package service;
+package Proyecto.service;
 
 public class ServerErrorException extends Exception {
 
