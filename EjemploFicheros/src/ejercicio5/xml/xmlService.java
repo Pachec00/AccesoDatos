@@ -43,7 +43,7 @@ public class xmlService {
 					String año = edicionesTag.getTextContent();
 					System.out.println("\tAño : " + año);
 					String editorial = edicionesTag.getTextContent();
-					System.out.println("ªnEditorial : " + editorial );
+					System.out.println("\nEditorial : " + editorial );
 				}
 				
 				

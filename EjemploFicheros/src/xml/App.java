@@ -1,26 +1,35 @@
 package xml;
 
-import java.io.IOException;
+import java.util.List;
 
 import javax.xml.transform.TransformerException;
 
-import org.xml.sax.SAXException;
+import SAX.ejercicio8.LibroException;
+import SAX.ejercicio8.XMLLibroServices;
+import SAX.ejercicio8.modelo.Libro;
 
 public class App {
 	public static void main(String[] args) {
-		//testCrearXML();
-		
+		// testCrearXML();
+
 		testLeerXML();
-		
-		
+
 	}
 
 	private static void testLeerXML() {
-		xmlSimple xml = new xmlSimple();
-		
-		xml.leerXML("C:\\Users\\frodriguez0023\\Desktop\\Fichero\\ejemplo.xml");
-		
-		
+		XMLLibroServices service = new XMLLibroServices();
+
+		List<Libro> libros;
+		try {
+			libros = service.leerLibro("C:\\Users\\frodriguez0023\\Desktop\\Fichero\\xmlLibros.xml");
+			for (int i = 0; i < libros.size(); i++) {
+				System.out.println(libros.get(i));
+			}
+		} catch (LibroException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	private static void testCrearXML() {
