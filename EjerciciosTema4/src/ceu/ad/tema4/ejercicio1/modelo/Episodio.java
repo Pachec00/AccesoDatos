@@ -1,6 +1,14 @@
 package ceu.ad.tema4.ejercicio1.modelo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "episodios")
 public class Episodio {
+	
+	@Id
 	private Long id;
 	private String titulo;
 

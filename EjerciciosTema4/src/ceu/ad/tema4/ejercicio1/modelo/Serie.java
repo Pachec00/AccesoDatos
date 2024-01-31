@@ -26,12 +26,12 @@ public class Serie {
 	@Column(name = "fecha_estreno")
 	private Date estreno;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_trailer")
 	private Trailer trailer;
 
-	@OneToMany
-	@JoinColumn(name = "id_serie")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_serie", nullable = false)
 	private List<Temporada> temporadas;
 
 	public Long getId() {
