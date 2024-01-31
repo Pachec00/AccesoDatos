@@ -2,7 +2,9 @@ package ceu.ad.tema4.ejercicio1.modelo;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,12 +18,12 @@ public class Temporada {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	private Long id;
+	
 	private Integer numero;
 	
-	@OneToMany
-	@JoinColumn(name = "id_temporada")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_temporada", nullable = false)
 	private List<Episodio> episodios;
 
 	public Long getId() {

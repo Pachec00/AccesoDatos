@@ -1,4 +1,4 @@
-package ceu.ad.tema4.ejercicio1.jpa;
+package ceu.ad.tema4.ejercicio2.jpa;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -6,10 +6,11 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
-import ceu.ad.tema4.ejercicio1.modelo.Episodio;
-import ceu.ad.tema4.ejercicio1.modelo.Serie;
-import ceu.ad.tema4.ejercicio1.modelo.Temporada;
 import ceu.ad.tema4.ejercicio1.modelo.Trailer;
+import ceu.ad.tema4.ejercicio2.modelo.Articulo;
+import ceu.ad.tema4.ejercicio2.modelo.Cliente;
+import ceu.ad.tema4.ejercicio2.modelo.Pedido;
+import ceu.ad.tema4.ejercicio2.modelo.PedidoLinea;
 
 public class HibernateUtil {
 
@@ -26,10 +27,10 @@ public class HibernateUtil {
 		try {
 			ServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 			Metadata metadata = new MetadataSources(registry)
-					.addAnnotatedClass(Episodio.class)
-					.addAnnotatedClass(Serie.class)
-					.addAnnotatedClass(Temporada.class)
-					.addAnnotatedClass(Trailer.class)
+					.addAnnotatedClass(Articulo.class)
+					.addAnnotatedClass(Cliente.class)
+					.addAnnotatedClass(Pedido.class)
+					.addAnnotatedClass(PedidoLinea.class)
 					.getMetadataBuilder().build();
 			sessionFactoy = metadata.getSessionFactoryBuilder().build();
 		} catch (Exception e) {

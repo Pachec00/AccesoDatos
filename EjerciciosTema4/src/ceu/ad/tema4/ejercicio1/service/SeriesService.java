@@ -9,8 +9,9 @@ public interface SeriesService {
 	/** Debe crear la serie y todas sus entidades asociadas en bbdd. Si hay algún error, lanzará 
 	 * SeriesServiceException. 
 	 * Devolverá la serie creada con todos sus datos completos.
+	 * @throws SerieNotFoundException 
 	 */
-	public Serie crearSerie(Serie serie) throws SeriesServiceException;
+	public Serie crearSerie(Serie serie) throws SeriesServiceException, SerieNotFoundException;
 
 	/** Consulta la serie con el id indicado por parámetro y la devuelve. Tiene que incluir todas sus entidades 
 	 * asociadas. Si la serie no existe, se lanzará SerieNotFoundException. Si hay cualquier otro error, se
@@ -28,8 +29,9 @@ public interface SeriesService {
 
 	/** Debe eliminar la serie con el id indicado, y todas sus entidades asociadas de bbdd. 
 	 * Si hay algún error, lanzará SeriesServiceException.
+	 * @throws SerieNotFoundException 
 	 */
-	public void elimnarSerie(Long idSerie) throws SeriesServiceException;
+	public void elimnarSerie(Long idSerie) throws SeriesServiceException, SerieNotFoundException;
 
 	/** Actualizará la serie que se pasa por parámetro y todas las entidades asociadas que estén modificadas. 
 	 * Si hay algún error, lanzará SeriesServiceException

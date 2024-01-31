@@ -26,7 +26,7 @@ public class Serie {
 	@Column(name = "fecha_estreno")
 	private Date estreno;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_trailer")
 	private Trailer trailer;
 

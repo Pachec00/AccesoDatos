@@ -1,5 +1,6 @@
 package ceu.ad.tema4.ejercicio2.service;
 
+import ceu.ad.tema4.ejercicio1.service.SerieNotFoundException;
 import ceu.ad.tema4.ejercicio2.modelo.*;
 
 public interface PedidosClientesService {
@@ -15,8 +16,9 @@ public interface PedidosClientesService {
 	 * de línea antes de guardarlas. Se inicializarán comenzando en 1 */
 	public Pedido crearPedido(Pedido pedido) throws PedidosClientesServiceException;
 	
-	/** Debe crear en bbdd el artículo indicado. Devolverá el articulo registrado completo. */
-	public Articulo crearArticulo(Articulo articulo) throws PedidosClientesServiceException;
+	/** Debe crear en bbdd el artículo indicado. Devolverá el articulo registrado completo. 
+	 * @throws SerieNotFoundException */
+	public Articulo crearArticulo(Articulo articulo) throws PedidosClientesServiceException, SerieNotFoundException;
 
 
 	/** Actualizará los datos del cliente indicado en BBDD. Sólo se actualizarán los datos
