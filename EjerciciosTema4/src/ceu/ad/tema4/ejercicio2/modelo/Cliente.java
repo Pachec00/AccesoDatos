@@ -3,6 +3,7 @@ package ceu.ad.tema4.ejercicio2.modelo;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -16,7 +17,7 @@ public class Cliente {
 
 	private String apellidos;
 
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
 	private Set<Pedido> pedidos;
 
 	public String getDni() {

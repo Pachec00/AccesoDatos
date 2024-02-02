@@ -9,8 +9,10 @@ import javax.annotation.processing.Generated;
 
 import org.hibernate.annotations.JdbcTypeCode;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,12 +30,12 @@ public class Pedido {
 	private UUID uidPedido;
 
 	@ManyToOne
-	@JoinColumn(name = "dni_cliente")
+	@JoinColumn(name = "dni_cliente", nullable = false)
 	private Cliente cliente;
 
 	private Date fecha;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "uuid_pedido")
 	private List<PedidoLinea> lineas;
 

@@ -7,7 +7,7 @@
 		<property name="hibernate.connection.url">jdbc:mariadb://localhost:3306/ad-orm-practica2</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">root</property>
-		<property name="hibernate.show_sql">false</property>
+		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.connection.autoReconnect">true</property>
 		<!-- Para trabajar con getCurrentSession en lugar de openSession -->
 		<!-- <property name="current_session_context_class">thread</property> -->

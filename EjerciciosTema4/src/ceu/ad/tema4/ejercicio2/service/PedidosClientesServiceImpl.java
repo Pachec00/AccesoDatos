@@ -3,8 +3,9 @@ package ceu.ad.tema4.ejercicio2.service;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
-import ceu.ad.tema4.ejercicio1.jpa.HibernateUtil;
+import ceu.ad.tema4.ejercicio2.jpa.HibernateUtil;
 import ceu.ad.tema4.ejercicio1.service.SerieNotFoundException;
 import ceu.ad.tema4.ejercicio2.modelo.Articulo;
 import ceu.ad.tema4.ejercicio2.modelo.Cliente;
@@ -96,8 +97,16 @@ public class PedidosClientesServiceImpl implements PedidosClientesService {
 
 	@Override
 	public Cliente consultarCliente(String dni) throws NotFoundException, PedidosClientesServiceException {
-		// TODO: IMPLEMENTAR...
-		return null;
+		SessionFactory factory = null;
+		Session session = null;
+		
+		factory = HibernateUtil.getSessionFactoy();
+		session = factory.openSession();
+		
+		Cliente cliente = session.get(Cliente.class, dni);
+		if(cliente == null) {
+			throw new NotFoundException("No existe el dni");
+		}
 	}
 
 	@Override
