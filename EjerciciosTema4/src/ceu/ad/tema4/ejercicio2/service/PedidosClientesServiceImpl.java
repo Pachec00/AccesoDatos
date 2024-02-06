@@ -107,6 +107,7 @@ public class PedidosClientesServiceImpl implements PedidosClientesService {
 		if(cliente == null) {
 			throw new NotFoundException("No existe el dni");
 		}
+		return cliente;
 	}
 
 	@Override
