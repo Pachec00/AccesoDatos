@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package modelo;
 
 import jakarta.persistence.Entity;
@@ -96,4 +96,4 @@ public class Turno {
 	}
 
 }
->>>>>>> branch 'main' of https://github.com/Pachec00/AccesoDatos.git
+
