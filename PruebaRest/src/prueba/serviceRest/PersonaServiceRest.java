@@ -28,10 +28,12 @@ public class PersonaServiceRest {
 	}
 
 	@PostMapping("/newPersona")
-	public void setPersona(@RequestBody String nombre) {
+	public Persona setPersona(@RequestBody String nombre) {
 		PersonaService ps = new PersonaService();
 
-		ps.setData(nombre);
+		Persona persona = ps.setData(nombre);
+		
+		return persona;
 	}
 
 	@GetMapping("/saludo")

@@ -41,7 +41,7 @@ public class PersonaService {
 		return null;
 	}
 
-	public void setData(String nombre) {
+	public Persona setData(String nombre) {
 
 		/*
 		 * Saber cual es el id mas alto para asi incrementarlo en +1 al crear un nuevo
@@ -59,5 +59,7 @@ public class PersonaService {
 		persona.setId(max);
 
 		listaPersonas.add(persona);
+		
+		return persona;
 	}
 }
